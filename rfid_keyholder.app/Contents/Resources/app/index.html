@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Смена Ключей Авторизации</title>
+</head>
+<body>
+  <div style='border:1px solid lightgrey;padding:8px;font-family: arial;width:400px;'>
+    <h2>Смена Ключей Авторизации</h2>
+    <label for="">UUID</label>
+    <input id='uuid' type="text"  style='' placeholder="Введите новый UUID ключа, например 23 B1 A3 81">
+    <button onclick='setUuid()'>Установить новый UUID карты</button>
+    <br/>
+    <label for="">PIN код</label>
+    <input id='pin' type="number"  style='' placeholder="Введите новый PIN код, например 4424">
+    <button onclick='setPin()' >Установить новый PIN код</button>
+    <br>
+    <div id="waiter">
+      <div class="wind">
+      <img src="loader.gif" alt="" height='40'><br/>
+        Подождите, работаем</div>
+    </div>
+    &copy; Make Busters
+  </div>
+  <style>
+    html,body{
+      padding:0;
+      margin:0;
+    }
+
+    #waiter{
+      background: rgba(0,0,0,0.7);
+      position: fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      display: none;
+    }
+
+    #waiter .wind{
+      width:200px;
+      height:70px;
+      position: absolute;
+      left:50%;
+      top:50%;
+      margin-left:-100px;
+      margin-top:-35px;
+      background: white;
+      text-align: center;
+      padding:10px;
+      border-radius: 6px;
+    }
+    input{
+          border: 1px solid lightgrey;
+          border-radius: 4px;
+          height: 24px;
+          padding: 4px 8px;
+          width: 330px;
+          display: block;
+          margin-bottom: 6px;
+          width: 100%;
+          box-sizing: border-box;
+          font-size: 16px;
+          outline:none;
+    }
+    button{
+        padding: 4px 8px;
+        border-radius: 3px;
+        background: linear-gradient(#33ce33, #85ff00);
+        border: 1px solid green;
+        display: block;
+        font-size: 16px;
+        width: 100%;
+        cursor:pointer;
+        outline:none;
+    }
+    button:hover{
+      background: linear-gradient(#59e059, #c5ff86);
+    }
+    button:active{
+      background: linear-gradient(#25c125, #6acc00);
+    }
+  </style>
+
+  <script>
+    let _get = (_id)=>{
+      return document.getElementById(_id);
+    }
+    let show_waiter = ()=>{
+      _get('waiter').style.display = 'block';
+    }
+    let setPin = ()=>{
+      if(_get('pin').value.length<4){
+        return alert('Укажите правильный PIN');
+      }
+      show_waiter();
+    }
+    let setUuid = ()=>{
+      if(_get('uuid').value.length<8){
+        return alert('Укажите правильный UUID');
+      }
+      show_waiter();
+    }
+  </script>
+</body>
+</html>
